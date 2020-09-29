@@ -1,0 +1,404 @@
+org: skumar129
+app: myapp
+service: barzbro-api-college
+
+plugins:
+  - serverless-offline
+  
+
+custom:
+  allowedHeaders:
+    - Accept
+    - Content-Type
+    - Content-Length
+    - Authorization
+    - X-Amz-Date
+    - X-Api-Key
+    - X-Amz-Security-Token
+    - X-Amz-User-Agent
+    - app_user_name
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: 'us-east-2'
+  stage: dev
+  timeout: 10
+  endpointType: regional
+  iamRoleStatements:
+    # - Effect: Allow
+    #   Action: 
+    #     - dynamodb:Query
+    #     - dynamodb:PutItem
+    #     - dynamodb:DeleteItem
+    #   Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/City_Posts"
+    # - Effect: Allow
+    #   Action: 
+    #     - dynamodb:Query
+    #   Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/City_Posts/index/LocUser-Rating-index"
+    # - Effect: Allow
+    #   Action: 
+    #     - dynamodb:Query
+    #   Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/City_Posts/index/Username-Timestamp-index"
+    # - Effect: Allow
+    #   Action: 
+    #     - dynamodb:Query
+    #   Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/City_Posts/index/LocUser-Timestamp-index"
+    # - Effect: Allow
+    #   Action: 
+    #     - dynamodb:Query
+    #   Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/City_Posts/index/LocBar-Rating-index"
+    # - Effect: Allow
+    #   Action: 
+    #     - dynamodb:Query
+    #   Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/City_Posts/index/LocBar-Timestamp-index"
+    # - Effect: Allow
+    #   Action: 
+    #     - dynamodb:Query
+    #   Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/City_Posts/index/Location-Rating-index"
+    # - Effect: Allow
+    #   Action: 
+    #     - dynamodb:Query
+    #   Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/City_Posts/index/Location-Bar-index"
+    # - Effect: Allow
+    #   Action: 
+    #     - dynamodb:Query
+    #   Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/City_Posts/index/Location-Neighborhood-index"
+    # - Effect: Allow
+    #   Action: 
+    #     - dynamodb:Query
+    #   Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/City_Posts/index/LocNeighborhood-Rating-index"
+    # - Effect: Allow
+    #   Action: 
+    #     - dynamodb:Query
+    #   Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/City_Posts/index/LocNeighborhood-Timestamp-index"
+    - Effect: Allow
+      Action: 
+        - dynamodb:Query
+        - dynamodb:PutItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/College_Posts"
+    - Effect: Allow
+      Action: 
+        - dynamodb:Query
+      Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/College_Posts/index/SchoolUser-Rating-index"
+    - Effect: Allow
+      Action: 
+        - dynamodb:Query
+      Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/College_Posts/index/SchoolUser-Timestamp-index"
+    - Effect: Allow
+      Action: 
+        - dynamodb:Query
+      Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/College_Posts/index/SchoolReg-Rating-index"
+    - Effect: Allow
+      Action: 
+        - dynamodb:Query
+      Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/College_Posts/index/SchoolBar-Rating-index"
+    - Effect: Allow
+      Action: 
+        - dynamodb:Query
+      Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/College_Posts/index/Username-Timestamp-index"
+    - Effect: Allow
+      Action: 
+        - dynamodb:Query
+      Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/College_Posts/index/SchoolBar-Timestamp-index"
+    - Effect: Allow
+      Action: 
+        - dynamodb:Query
+      Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/College_Posts/index/SchoolReg-Timestamp-index"
+    - Effect: Allow
+      Action: 
+        - dynamodb:Query
+      Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/College_Posts/index/School-Bar-index"
+    - Effect: Allow
+      Action: 
+        - dynamodb:Query
+      Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/College_Posts/index/School-Region-index"
+    - Effect: Allow
+      Action: 
+        - dynamodb:Query
+      Resource: "arn:aws:dynamodb:us-east-2:881910742677:table/College_Posts/index/School-Rating-index"
+
+
+functions:
+  # add-post:
+  #   handler: lambdas/add-post.handler
+  #   events:
+  #     - http:
+  #         path: post/add/{username}
+  #         method: post
+  #         cors:
+  #           origin: '*'
+  #           headers: ${self:custom.allowedHeaders}
+
+  # delete-post:
+  #   handler: lambdas/delete-post.handler
+  #   events:
+  #     - http:
+  #         path: post/delete/lt/{location}/{timestamp}
+  #         method: delete
+  #         cors:
+  #           origin: '*'
+  #           headers: ${self:custom.allowedHeaders}
+
+  # get-posts:
+  #   handler: lambdas/get-post-location-time.handler
+  #   events:
+  #     - http:
+  #         path: post/l/{location}
+  #         method: get
+  #         cors:
+  #           origin: '*'
+  #           headers: ${self:custom.allowedHeaders}
+
+  # get-posts-bar:
+  #   handler: lambdas/get-loc-bar.handler
+  #   events:
+  #     - http:
+  #         path: post/bar/{location}
+  #         method: get
+  #         cors:
+  #           origin: '*'
+  #           headers: ${self:custom.allowedHeaders}
+
+  # get-posts-nbhood:
+  #   handler: lambdas/get-loc-nborhood.handler
+  #   events:
+  #     - http:
+  #         path: post/nbhood/{location}
+  #         method: get
+  #         cors:
+  #           origin: '*'
+  #           headers: ${self:custom.allowedHeaders}
+
+  # get-posts-nbhood-rating:
+  #   handler: lambdas/get-loc-nborhood-time.handler
+  #   events:
+  #     - http:
+  #         path: post/nbhood/nr/{locationNbhood}
+  #         method: get
+  #         cors:
+  #           origin: '*'
+  #           headers: ${self:custom.allowedHeaders}
+
+  # get-posts-nbhood-time:
+  #   handler: lambdas/get-loc-nborhood-rating.handler
+  #   events:
+  #     - http:
+  #         path: post/nbhood/nt/{locationNbhood}
+  #         method: get
+  #         cors:
+  #           origin: '*'
+  #           headers: ${self:custom.allowedHeaders}
+
+
+  # update-post:
+  #   handler: lambdas/update-post.handler
+  #   events:
+  #     - http:
+  #         path: post/update
+  #         method: patch
+  #         cors: 
+  #           origin: '*'
+  #           headers: ${self:custom.allowedHeaders}
+
+  # get-post-username:
+  #   handler: lambdas/get-post-username.handler
+  #   events:
+  #     - http:
+  #         path: post/u/{username}
+  #         method: get
+  #         cors:
+  #           origin: '*'
+  #           headers: ${self:custom.allowedHeaders}
+          
+  
+  # get-post-rating:
+  #   handler: lambdas/get-post-location-rating.handler
+  #   events:
+  #     - http:
+  #         path: post/lr/{location}
+  #         method: get
+  #         cors:
+  #           origin: '*'
+  #           headers: ${self:custom.allowedHeaders}
+
+  # get-loc-bar-time:
+  #   handler: lambdas/get-loc-bar-time.handler
+  #   events:
+  #     - http:
+  #         path: post/lbt/{locationBar}
+  #         method: get
+  #         cors:
+  #           origin: '*'
+  #           headers: ${self:custom.allowedHeaders}
+  
+  # get-loc-bar-rating:
+  #   handler: lambdas/get-loc-bar-rating.handler
+  #   events: 
+  #     - http:
+  #         path: post/lbr/{locationBar}
+  #         method: get
+  #         cors:
+  #           origin: '*'
+  #           headers: ${self:custom.allowedHeaders}
+
+  # get-loc-user-time:
+  #   handler: lambdas/get-loc-user-time.handler
+  #   events:
+  #     - http:
+  #         path: post/lut/{locationUser}
+  #         method: get
+  #         cors:
+  #           origin: '*'
+  #           headers: ${self:custom.allowedHeaders}
+  
+  # get-loc-user-rating:
+  #   handler: lambdas/get-loc-user-rating.handler
+  #   events:
+  #     - http:
+  #         path: post/lur/{locationUser}
+  #         method: get
+  #         cors:
+  #           origin: '*'
+            # headers: ${self:custom.allowedHeaders}
+
+  add-college-post:
+    handler: lambdas/add-college-post.handler
+    events:
+      - http:
+          path: post/college/create/{username}
+          method: post
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+  
+  delete-college-post:
+    handler: lambdas/delete-college-post.handler
+    events:
+      - http:
+          path: post/college/delete/{school}/{timestamp}
+          method: delete
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+
+  update-college-post:
+    handler: lambdas/update-college-post.handler
+    events:
+      - http:
+          path: post/college/update
+          method: patch
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+  
+  get-post-school-rating:
+    handler: lambdas/get-post-school-rating.handler
+    events:
+      - http:
+          path: post/school/st/{school}
+          method: get
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+
+  get-post-school-time:
+    handler: lambdas/get-post-school-time.handler
+    events:
+      - http:
+          path: post/school/sr/{school}
+          method: get
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+
+  get-school-bar-rating:
+    handler: lambdas/get-school-bar-rating.handler
+    events:
+      - http:
+          path: post/schoolbar/sbr/{schoolBar}
+          method: get
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+
+  get-school-bar-time:
+    handler: lambdas/get-school-bar-time.handler
+    events:
+      - http:
+          path: post/schoolbar/sbt/{schoolBar}
+          method: get
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+
+  get-school-bar:
+    handler: lambdas/get-school-bar.handler
+    events:
+      - http:
+          path: post/schoolbar/sbb/{school}
+          method: get
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+
+  get-school-reg-rating:
+    handler: lambdas/get-school-reg-rating.handler
+    events:
+      - http:
+          path: post/schoolreg/srr/{schoolReg}
+          method: get
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+
+  get-school-reg-time:
+    handler: lambdas/get-school-reg-time.handler
+    events:
+      - http:
+          path: post/schoolreg/srt/{schoolReg}
+          method: get
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+
+  get-school-reg:
+    handler: lambdas/get-school-reg.handler
+    events:
+      - http:
+          path: post/schoolreg/srs/{school}
+          method: get
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+
+  get-school-user-rating:
+    handler: lambdas/get-school-user-rating.handler
+    events:
+      - http:
+          path: post/schooluser/sur/{schoolUser}
+          method: get
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+
+  get-school-user-time:
+    handler: lambdas/get-school-user-time.handler
+    events:
+      - http:
+          path: post/schooluser/sut/{schoolUser}
+          method: get
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
+
+  get-school-username:
+    handler: lambdas/get-school-username.handler
+    events:
+      - http:
+          path: post/school/u/{username}
+          method: get
+          cors:
+            origin: '*'
+            headers: ${self:custom.allowedHeaders}
