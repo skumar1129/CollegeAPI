@@ -1,0 +1,2 @@
+# Project Background
+This is the college service backend code for Barzbro.com, an application that allows you to make simple posts about bars/restaurants in different cities and college campuses. The architecture is a simple frontend written in Angular with the backend code being written in NodeJS and using DynamoDB as a datastore.
